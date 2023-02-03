@@ -1,0 +1,51 @@
+CREATE DATABASE ejemplobd;
+USE ejemplobd;
+CREATE TABLE clientes (
+id INT AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(50) NOT NULL,
+apellido VARCHAR(50) NOT NULL,
+direccion VARCHAR(100) NOT NULL,
+telefono VARCHAR(20) NOT NULL
+);
+CREATE TABLE pedidos (
+id INT AUTO_INCREMENT PRIMARY KEY,
+fecha DATE NOT NULL,
+cliente_id INT NOT NULL,
+total DECIMAL(10,2) NOT NULL,
+FOREIGN KEY (cliente_id) REFERENCES clientes(id)
+);
+CREATE TABLE detalles (
+id INT AUTO_INCREMENT PRIMARY KEY,
+pedido_id INT NOT NULL,
+producto VARCHAR(50) NOT NULL,
+cantidad INT NOT NULL,
+precio DECIMAL(10,2) NOT NULL,
+FOREIGN KEY (pedido_id) REFERENCES pedidos(id)
+);
+ALTER TABLE clientes
+ADD COLUMN correo VARCHAR(100);
+ALTER TABLE clientes
+MODIFY COLUMN telefono VARCHAR(30);
+INSERT INTO clientes (nombre, apellido, direccion, telefono, correo)
+VALUES ('Marina', 'Lopez', 'Calle 1', '555-5555', 'jsdchbjz@email.com'),
+('María', 'Rodríguez', 'Calle 2', '555-5556', 'tgetgetez@email.com'),
+('argegtg', 'Gómez', 'Calle 3', '555-5557', 'pedrogomez@email.com');
+INSERT INTO pedidos (fecha, cliente_id, total)
+VALUES ('2022-01-01', 1, 100.00),
+('2022-02-01', 2, 200.00),
+('2022-03-01', 3, 300.00);
+INSERT INTO detalles (pedido_id, producto, cantidad, precio)
+VALUES (1, 'Producto 1', 10, 10.00),
+(1, 'Producto 2', 20, 20.00),
+(2, 'Producto 3', 30, 30.00),
+(2, 'Producto 4', 40, 40.00),
+(3, 'Producto 5', 50, 50.00),
+(3, 'Producto 6', 60, 60.00);
+SELECT * FROM clientes;
+SELECT * FROM pedidos;
+SELECT * FROM detalles;
+UPDATE clientes
+SET nombre = 'Juan Carlos'
+WHERE id = 1;
+DELETE FROM detalles
+WHERE id = 3;

@@ -1,0 +1,33 @@
+Marina lopez Arriaga
+
+
+CREATE DATABASE nombrebd
+
+USE nombrebd
+CREATE TABLE nombretabla (
+columna1 tipodedato1(tamaño),
+columna2 tipodedato2(tamaño),
+columna3 tipodedato3(tamaño)
+);
+ALTER TABLE nombretabla
+ADD COLUMN nuevacolumna tipodedato(tamaño);
+DROP COLUMN nombrecolumna;
+MODIFY COLUMN nombrecolumna nuevotipodedato(tamaño);
+RENAME COLUMN nombrecolumna nuevonombrecolumna;
+INSERT INTO nombretabla (columna1, columna2, columna3)
+VALUES (valor1, valor2, valor3);
+SELECT * FROM nombretabla;
+SELECT columna1, columna2 FROM nombretabla;
+SELECT DISTINCT columna1 FROM nombretabla;
+UPDATE nombretabla
+SET columna1 = nuevovalor1, columna2 = nuevovalor2
+WHERE condición;
+DELETE FROM nombretabla
+WHERE condición;
+CREATE INDEX nombreindice
+ON nombretabla (columna1, columna2);
+DROP INDEX nombreindice;
+CREATE USER nombreusuario IDENTIFIED BY 'contraseña';
+GRANT privilegios ON nombrebd.* TO nombreusuario;
+REVOKE privilegios ON nombrebd.* FROM nombreusuario;
+DROP USER nombreusuario;
